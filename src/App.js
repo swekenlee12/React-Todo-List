@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import uuid from "uuid";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { v4 as uuidv4 } from "uuid";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
+import Jumbotron from "./components/Jumbotron";
+import Navbar from "./components/Navbar";
 class App extends Component {
   state = {
     items: [],
-    id: uuid(),
+    id: uuidv4(),
     item: "",
     editItem: false
   };
@@ -26,7 +27,7 @@ class App extends Component {
     this.setState({
       items: updatedItems,
       item: "",
-      id: uuid(),
+      id: uuidv4(),
       editItem: false
     });
   };
@@ -53,10 +54,10 @@ class App extends Component {
   };
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-10 mx-auto col-md-8 mt-5">
-            <h3 className="text-capitalize text-center">todo input</h3>
+      <>
+            <Navbar />
+            <Jumbotron />
+            <div className="body-center" >
             <TodoInput
               item={this.state.item}
               handleChange={this.handleChange}
@@ -69,9 +70,8 @@ class App extends Component {
               handleDelete={this.handleDelete}
               handleEdit={this.handleEdit}
             />
-          </div>
-        </div>
-      </div>
+            </div>
+      </>
     );
   }
 }
